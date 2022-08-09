@@ -139,7 +139,29 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
     partial class BlogService
     {
+        public static void Inbox()
+        {
+            List<Blog> blogs = blogrepo.GetAll();
+            foreach (Blog blog in blogs)
+            {
+                if (blog.From.Id==Dashboard.CurrentUser.Id)
+                {
+                    switch (blog.Status)
+                    {
+                        case BlogStatus.Accepted:
+                            Console.WriteLine($"Your {blog.ID} blog Accepted");
+                            break;
+                        case BlogStatus.Rejected:
+                            Console.WriteLine($"Your {blog.ID} blog Rejected");
+                            break;                      
+                        default:
+                            break;
+                    }
+                    Console.WriteLine();
 
+                }
+            }
+        }
 
 
     }

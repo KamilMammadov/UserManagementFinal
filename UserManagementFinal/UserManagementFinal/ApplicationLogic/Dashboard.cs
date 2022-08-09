@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementFinal.ApplicationLogic.Services;
 using UserManagementFinal.ApplicationLogic.Validations;
 using UserManagementFinal.Database.Models;
 using UserManagementFinal.Database.Models.Repository;
@@ -261,43 +262,12 @@ namespace UserManagementFinal.ApplicationLogic
             Console.WriteLine($"User succesfully joined : {user.GetUserInfo()}");
             while (true)
             {
-                Console.WriteLine("User commands are : /update-info , /report-user , /logout , /add-blog");
+                Console.WriteLine("User commands are : /inbox ,\n /add-blog ,\n/logout");
                 string command = Console.ReadLine();
-
-                if (command == "/update-info")
+                if (command=="/inbox")
                 {
-                    if (user.Email == email)
-                    {
-                        User updateUser = new User(UserValidation.GetName(), UserValidation.GetLastName());
-                        UserRepository.UpdateForUser(email, updateUser);
-                    }
+                    BlogService.Inbox();
                 }
-                else if (command == "/report-user")
-                {
-                    Console.WriteLine("Enter report etmek istediyin adamin mailini");
-                    string toWho = Console.ReadLine();
-                    Console.WriteLine("Enter report text : ");
-                    string reportText = ReportValidation.GetReportText();
-
-                    User reporter = UserRepository.GetByEmail(toWho);
-                    if (reporter == null)
-                    {
-                        Console.WriteLine("Report etmediyiniz istifadeci tapilmadi...");
-                    }
-                    else if (reporter == CurrentUser)
-                    {
-                        Console.WriteLine("Oz ozunuzu sikayet ede bilmezsiniz");
-                    }
-                    else
-                    {
-                        ReportRepository.AddReport(CurrentUser, reporter, reportText);
-                        Console.WriteLine("User report olundu..");
-                    }
-
-
-
-                }
-
                 else if (command == "/logout")
                 {
                     Program.Main(new string[] { });
@@ -307,6 +277,41 @@ namespace UserManagementFinal.ApplicationLogic
                 {
                     Console.WriteLine("Command not found...");
                 }
+
+                //if (command == "/update-info")
+                //{
+                //    if (user.Email == email)
+                //    {
+                //        User updateUser = new User(UserValidation.GetName(), UserValidation.GetLastName());
+                //        UserRepository.UpdateForUser(email, updateUser);
+                //    }
+                //}
+                //else if (command == "/report-user")
+                //{
+                //    Console.WriteLine("Enter report etmek istediyin adamin mailini");
+                //    string toWho = Console.ReadLine();
+                //    Console.WriteLine("Enter report text : ");
+                //    string reportText = ReportValidation.GetReportText();
+
+                //    User reporter = UserRepository.GetByEmail(toWho);
+                //    if (reporter == null)
+                //    {
+                //        Console.WriteLine("Report etmediyiniz istifadeci tapilmadi...");
+                //    }
+                //    else if (reporter == CurrentUser)
+                //    {
+                //        Console.WriteLine("Oz ozunuzu sikayet ede bilmezsiniz");
+                //    }
+                //    else
+                //    {
+                //        ReportRepository.AddReport(CurrentUser, reporter, reportText);
+                //        Console.WriteLine("User report olundu..");
+                //    }
+
+
+
+                //}
+
             }
 
 
