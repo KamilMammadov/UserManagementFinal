@@ -10,28 +10,28 @@ namespace UserManagementFinal.Database.Models.Repository.Common
     public class Repository<T, TId>
          where T : Entity<TId>
     {
-        protected static List<T> DBontens { get; set; } = new List<T>();
+        protected static List<T> DBContens { get; set; } = new List<T>();
       
 
         public T Add(T entry)
         {
-            DBontens.Add(entry);
+            DBContens.Add(entry);
             return entry;
         }
 
         public void Delete(T entry)
         {
-            DBontens.Remove(entry);
+            DBContens.Remove(entry);
         }
 
         public List<T> GetAll()
         {
-            return DBontens;
+            return DBContens;
         }
 
         public T GetById(TId id)
         {
-            foreach (T entry in DBontens)
+            foreach (T entry in DBContens)
             {
 
                 if (Equals(entry.Id, id))
@@ -44,7 +44,7 @@ namespace UserManagementFinal.Database.Models.Repository.Common
 
         public T Get(Predicate<T> expression)
         {
-            foreach (T entry in DBontens)
+            foreach (T entry in DBContens)
             {
                 if (expression(entry))
                 {

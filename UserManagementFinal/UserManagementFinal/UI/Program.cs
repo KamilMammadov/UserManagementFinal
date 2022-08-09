@@ -27,6 +27,10 @@ namespace UserManagementFinal
                     Authentication.Login();
 
                 }
+                else if (command =="/show-blogs-with-comments")
+                {
+
+                }
                 else if (command == "/exit")
                 {
 

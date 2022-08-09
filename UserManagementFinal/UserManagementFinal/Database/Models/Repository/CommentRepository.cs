@@ -8,5 +8,9 @@ namespace UserManagementFinal.Database.Models.Repository
 {
     class CommentRepository
     {
+        public CommentRepository()
+        {
+            
+        }
     }
 }
