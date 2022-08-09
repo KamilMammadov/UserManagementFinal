@@ -171,6 +171,20 @@ namespace UserManagementFinal.ApplicationLogic.Services
             }
         }
 
+        public static void MyBlogs()
+        {
+            List<Blog> blogs = blogrepo.GetAll();
+            int rownumber = 1;
+            foreach (Blog blog in blogs)
+            {             
+                if (Dashboard.CurrentUser.Id==blog.From.Id)
+                {
+                    Console.WriteLine($"{rownumber} {blog.GetInfo()}");
+                    rownumber++;
+                }
+            }
+        }
+
 
     }
 }
