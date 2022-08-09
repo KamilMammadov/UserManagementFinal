@@ -10,14 +10,16 @@ namespace UserManagementFinal.Database.Models
 {
     class Blog: Entity<string>
     {
+        public User From { get; set; }
         public string Tittle { get; set; }
         public string Content { get; set; }
         public string ID { get; set; }
         public DateTime CreadetTime { get; set; }
        
 
-        public Blog(string tittle,string content,string id=null)
+        public Blog(User from,string tittle,string content,string id=null)
         {
+            From = from;
             Tittle = tittle;
             Content = content;
             

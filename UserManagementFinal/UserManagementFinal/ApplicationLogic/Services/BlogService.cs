@@ -8,5 +8,8 @@ namespace UserManagementFinal.ApplicationLogic.Services
 {
     class BlogService
     {
+
+
+
     }
 }

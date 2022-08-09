@@ -24,7 +24,12 @@ namespace UserManagementFinal.Database.Models.Repository
 
         }
 
-
+        public static Blog Add(User from ,string tittle,string text)
+        {
+            Blog blog = new Blog(from, tittle, text);
+            DBContens.Add(blog);
+            return blog;
+        }
        
     }
 }
