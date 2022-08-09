@@ -29,6 +29,19 @@ namespace UserManagementFinal.Database.Models.Repository.Common
             return DBContens;
         }
 
+        public List<T> GetAll(Predicate<T> predicate)
+        {
+            List<T> list = new List<T>();
+            foreach (T entity in DBContens)
+            {
+                if (predicate(entity))
+                {
+                    list.Add(entity);
+                }
+            }
+            return list;
+        }
+
         public static T GetById(TId id)
         {
             foreach (T entry in DBContens)

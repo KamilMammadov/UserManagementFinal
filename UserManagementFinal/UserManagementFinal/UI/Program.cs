@@ -1,5 +1,7 @@
 ﻿using System;
 using UserManagementFinal.ApplicationLogic;
+using UserManagementFinal.ApplicationLogic.Services;
+using UserManagementFinal.Database.Models.Repository;
 
 namespace UserManagementFinal
 {
@@ -9,12 +11,15 @@ namespace UserManagementFinal
         {
             Console.WriteLine("/register");
             Console.WriteLine("/login");
+            Console.WriteLine("/show-blogs");
+            Console.WriteLine("/show-filtered-blogs-with-comments");
             Console.WriteLine("/exit");
-            Console.WriteLine(" enter command : ");
+
             Console.WriteLine();
             while (true)
             {
-                Console.Write("Enter suitable command :");
+                UserRepository userRepository = new UserRepository();
+                Console.Write("Enter command :");
                 string command = Console.ReadLine();
                 if (command == "/register")
                 {
@@ -27,9 +32,9 @@ namespace UserManagementFinal
                     Authentication.Login();
 
                 }
-                else if (command =="/show-blogs-with-comments")
+                else if (command =="/show-blogs")
                 {
-
+                    BlogService.ShowBlogs();
                 }
                 else if (command == "/exit")
                 {
