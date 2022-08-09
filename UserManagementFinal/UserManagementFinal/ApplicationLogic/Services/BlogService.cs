@@ -10,7 +10,7 @@ using UserManagementFinal.Database.Models.Repository.Common;
 
 namespace UserManagementFinal.ApplicationLogic.Services
 {
-    partial class BlogService
+    partial class BlogService  //when program starts
     {
         private static BlogRepository blogrepo = new BlogRepository();
         private static CommentRepository commentrepo = new CommentRepository();
@@ -137,7 +137,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
     }
 
-    partial class BlogService
+    partial class BlogService  //user`s methods
     {
         public static void Inbox()
         {
@@ -185,6 +185,15 @@ namespace UserManagementFinal.ApplicationLogic.Services
             }
         }
 
+        public static void AddBlog()
+        {
+            Console.WriteLine("Enter Tittle of blog :");
+            string tittle = Console.ReadLine();
+            Console.WriteLine("enter blog content");
+            string content = Console.ReadLine();
+
+            BlogRepository.Add(Dashboard.CurrentUser, tittle, content);
+        }
 
     }
 }
