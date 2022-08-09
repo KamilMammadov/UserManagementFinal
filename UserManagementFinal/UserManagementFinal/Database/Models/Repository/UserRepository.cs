@@ -27,8 +27,9 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static void SeedUsers()
         {
-            Entries.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321", 1));
-            Entries.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
+            DBontens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321", 1));
+            DBontens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
+            DBontens.Add(new Blog("C#", "Salam",));
 
 
         }
@@ -39,7 +40,7 @@ namespace UserManagementFinal.Database.Models.Repository
         {
 
             User user = new User(name, lastName, email, password, IdCounter);
-            Entries.Add(user);
+            DBontens.Add(user);
             return user;
         }
 
@@ -48,7 +49,7 @@ namespace UserManagementFinal.Database.Models.Repository
         {
 
             User user = new User(name, lastName, email, password, id);
-            Entries.Add(user);
+            DBontens.Add(user);
             return user;
         }
 
@@ -73,11 +74,11 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static void Remove(string email)
         {
-            foreach (User user1 in Entries)
+            foreach (User user1 in DBontens)
             {
                 if (user1.Email == email)
                 {
-                    Entries.Remove(user1);
+                    DBontens.Remove(user1);
                 }
             }
         }
@@ -91,7 +92,7 @@ namespace UserManagementFinal.Database.Models.Repository
         //}
         public static bool IsEmailExists(string email)
         {
-            foreach (User user in Entries)
+            foreach (User user in DBontens)
             {
                 if (user.Email == email)
                 {
@@ -103,7 +104,7 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static User GetByEmail(string email)
         {
-            foreach (User user in Entries)
+            foreach (User user in DBontens)
             {
                 if (user.Email == email)
                 {
@@ -115,7 +116,7 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static Admin GetByEmailForAdmin(string email)
         {
-            foreach (Admin admin in Entries)
+            foreach (Admin admin in DBontens)
             {
                 if (admin.Email == email)
                 {
@@ -127,7 +128,7 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static bool IsUserExistsByEmailAndPassword(string email, string password)
         {
-            foreach (User user in Entries)
+            foreach (User user in DBontens)
             {
                 if (user.Email == email && user.Password == password)
                 {

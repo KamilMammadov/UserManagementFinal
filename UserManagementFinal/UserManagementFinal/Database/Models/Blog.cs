@@ -21,6 +21,7 @@ namespace UserManagementFinal.Database.Models
             Tittle = tittle;
             Content = content;
             Comments = comments;
+            CreadetTime = DateTime.Now;
             if (id!=null)
             {
                 ID = id;
