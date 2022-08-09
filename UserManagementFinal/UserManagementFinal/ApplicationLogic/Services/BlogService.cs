@@ -195,5 +195,21 @@ namespace UserManagementFinal.ApplicationLogic.Services
             BlogRepository.Add(Dashboard.CurrentUser, tittle, content);
         }
 
+        public static void DeleteBlog()
+        {
+            Console.WriteLine("enter blog code :");
+            string code = Console.ReadLine();
+            Blog blog = BlogRepository.GetByCode(code);
+
+            if (Dashboard.CurrentUser==blog.From)
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("You can remove only your blogs");
+            }
+        }
+
     }
 }
