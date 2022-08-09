@@ -4,19 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserManagementFinal.ApplicationLogic.Services
+namespace UserManagementFinal.Database.Enums
 {
-    partial class BlogService
+    public enum BlogStatus
     {
-
-
-
-    }
-
-    partial class BlogService
-    {
-
-
-
     }
 }
