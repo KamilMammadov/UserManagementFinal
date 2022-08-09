@@ -29,7 +29,8 @@ namespace UserManagementFinal.Database.Models.Repository
         {
             DBContens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321", 1));
             DBContens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
-       
+            DBContens.Add(new User("eshqin", "ferecov", "eshqin@gmail.com", "123321", 3));
+            DBContens.Add(new Admin("Revan", "Maxmudov", "revan@gmail.com", "123321", 4));
 
 
         }

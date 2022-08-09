@@ -11,7 +11,7 @@ namespace UserManagementFinal
         {
             Console.WriteLine("/register");
             Console.WriteLine("/login");
-            Console.WriteLine("/show-blogs");
+            Console.WriteLine("/show-blogs-with-comments");
             Console.WriteLine("/show-filtered-blogs-with-comments");
             Console.WriteLine("/exit");
 
@@ -34,9 +34,13 @@ namespace UserManagementFinal
                     Authentication.Login();
 
                 }
-                else if (command =="/show-blogs")
+                else if (command == "/show-blogs-with-comments")
                 {
                     BlogService.ShowBlogs();
+                }
+                else if (command == "/show-filtered-blogs-with-comments")
+                {
+                    BlogService.FilteredBlogs();
                 }
                 else if (command == "/exit")
                 {
