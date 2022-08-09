@@ -10,7 +10,7 @@ namespace UserManagementFinal.Database.Models
     class Comments : Entity<int>
     {
         public Blog Blog { get; set; }
-        private static int _rowNumber;
+        private static int _rowNumber=1;
         public int RowNumber { get; set; }
         public User From { get; set; }
         public string Content { get; set; }

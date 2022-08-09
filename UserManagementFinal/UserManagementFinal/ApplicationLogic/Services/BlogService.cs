@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementFinal.Database.Enums;
 using UserManagementFinal.Database.Models;
 using UserManagementFinal.Database.Models.Repository;
 using UserManagementFinal.Database.Models.Repository.Common;
@@ -20,19 +21,23 @@ namespace UserManagementFinal.ApplicationLogic.Services
             List<Comments> comments = commentrepo.GetAll();
             foreach (Blog blog in blogs)
             {
-                Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}]  [{blog.From.Name}]  [{blog.From.LastName}] ");
-                Console.WriteLine($"==={blog.Tittle}===" );
-                Console.WriteLine(blog.Content);
-                Console.WriteLine();
-
-                foreach (Comments comment in comments)
+                if (blog.Status==BlogStatus.Accepted)
                 {
-                    if (comment.Blog==blog)
-                    {
-                        Console.WriteLine($"{comment.GetInfo()}");
+                    Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}]  [{blog.From.Name}]  [{blog.From.LastName}] ");
+                    Console.WriteLine($"==={blog.Tittle}===");
+                    Console.WriteLine(blog.Content);
+                    Console.WriteLine();
 
+                    foreach (Comments comment in comments)
+                    {
+                        if (comment.Blog == blog)
+                        {
+                            Console.WriteLine($"{comment.GetInfo()}");
+
+                        }
                     }
                 }
+                
 
             }
         }
