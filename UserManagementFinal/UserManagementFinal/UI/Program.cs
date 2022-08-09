@@ -16,6 +16,7 @@ namespace UserManagementFinal
             Console.WriteLine("/exit");
 
             Console.WriteLine();
+            
             while (true)
             {
                 UserRepository userRepository = new UserRepository();

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementFinal.Database.Models.Common;
 
 namespace UserManagementFinal.Database.Models
 {
-    class Comments
+    class Comments : Entity<int>
     {
         public Blog Blog { get; set; }
         private static int _rowNumber;

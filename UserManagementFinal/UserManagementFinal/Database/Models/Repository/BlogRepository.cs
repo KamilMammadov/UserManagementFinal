@@ -30,7 +30,10 @@ namespace UserManagementFinal.Database.Models.Repository
         {
             User user = Repository<User,int>.GetById(2);
             
-            DBContens.Add(new Blog(user, "How to learn programming", "Lorem Ipsum is simply dummy text", BlogStatus.Accepted,"BL001"));           
+            DBContens.Add(new Blog(user, "How to learn programming", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n" +
+                " Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n when an unknown printer took a galley of type and" +
+                " scrambled it to make a type specimen book.\n It has survived not only five centuries", BlogStatus.Accepted, "BL001"));
+
         }
 
         public static Blog Add(User from ,string tittle,string text)
