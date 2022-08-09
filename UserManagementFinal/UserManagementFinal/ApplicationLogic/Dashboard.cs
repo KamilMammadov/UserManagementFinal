@@ -28,7 +28,7 @@ namespace UserManagementFinal.ApplicationLogic
                 Console.WriteLine();
 
                 Console.WriteLine("Admin commands are : /add-user ,\n"  +
-                                               "/show-admins, /show-users,\n /logout");
+                                               "/show-admins, /show-users, /show-auditing-blogs\n /logout");
 
                 Console.WriteLine();
                 Console.Write("Enter suitable command : ");
@@ -37,6 +37,10 @@ namespace UserManagementFinal.ApplicationLogic
                 if (command == "/add-user")
                 {
                     Authentication.Register();
+                }
+                else if (command == "/show-auditing-blogs")
+                {
+                    BlogService.BlogManagement();
                 }
                 else if (command == "/show-admins")
                 {

@@ -214,4 +214,55 @@ namespace UserManagementFinal.ApplicationLogic.Services
         }
 
     }
+
+
+    partial class BlogService  //Admin`s methods
+    {
+        public static void BlogManagement()
+        {
+            List<Blog> blogs = blogrepo.GetAll();
+            List<Comments> comments = commentrepo.GetAll();
+            foreach (Blog blog in blogs)
+            {
+                if (blog.Status == BlogStatus.Waiting)
+                {
+                    Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.Status}] [{blog.From.Name}]" +
+                        $"  [{blog.From.LastName}] ");
+                    Console.WriteLine($"==={blog.Tittle}===");
+                    Console.WriteLine(blog.Content);
+                    Console.WriteLine();                   
+                }
+
+
+            }
+
+            Console.WriteLine("Commands :");
+            Console.WriteLine("/approve-blog");
+            Console.WriteLine("/reject-blog");
+            string command = Console.ReadLine();
+
+            Console.WriteLine("Enter blog's code :");
+            string code = Console.ReadLine();
+            Blog auditingBlog = BlogRepository.GetByCode(code);
+            if (auditingBlog!=null)
+            {
+                if (command == "/approve-blog")
+                {
+                    auditingBlog.Status = BlogStatus.Accepted;
+                }
+                else if(command == "/reject-blog")
+                {
+                    auditingBlog.Status = BlogStatus.Rejected;
+                }
+                else
+                {
+                    Console.WriteLine("command not found");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Blog not found");
+            }
+        }
+    }
 }
