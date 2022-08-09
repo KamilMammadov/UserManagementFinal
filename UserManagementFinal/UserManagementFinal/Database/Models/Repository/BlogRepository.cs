@@ -38,6 +38,20 @@ namespace UserManagementFinal.Database.Models.Repository
             DBContens.Add(blog);
             return blog;
         }
+
+        public static Blog GetByCode(string code)
+        {
+            List<Blog> blogs= new List<Blog>();
+
+            foreach (Blog blog in DBContens)
+            {
+                if (blog.ID==code)
+                {
+                    return blog;
+                }
+            }
+            return null;
+        }
        
     }
 }
