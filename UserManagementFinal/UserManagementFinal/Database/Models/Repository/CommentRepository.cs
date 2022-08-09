@@ -9,9 +9,11 @@ namespace UserManagementFinal.Database.Models.Repository
 {
     class CommentRepository : Repository<Comments,int>
     {
-        public CommentRepository()
+        static CommentRepository()
         {
-            
+            Blog blog = BlogRepository.GetByCode("BL001");
+            User user = Repository<User, int>.GetById(1);
+            DBContens.Add(new Comments(blog,user,"It is perfect!!!!!!!!"));
         }
 
         public static Comments Add(Blog blog,User from,string text)
