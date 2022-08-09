@@ -25,6 +25,13 @@ namespace UserManagementFinal.Database.Models.Repository
 
         }
 
+
+       static BlogRepository()
+        {
+            User user = Repository.Common.Repository<User,int>.GetById(2);
+            DBContens.Add(new Blog(user, "How to learn programming", "Lorem Ipsum is simply dummy text", BlogStatus.Accepted,"BL001"));           
+        }
+
         public static Blog Add(User from ,string tittle,string text)
         {
             Blog blog = new Blog(from, tittle, text,BlogStatus.Waiting);

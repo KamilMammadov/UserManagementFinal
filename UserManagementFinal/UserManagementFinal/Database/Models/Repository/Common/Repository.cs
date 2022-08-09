@@ -29,7 +29,7 @@ namespace UserManagementFinal.Database.Models.Repository.Common
             return DBContens;
         }
 
-        public T GetById(TId id)
+        public static T GetById(TId id)
         {
             foreach (T entry in DBContens)
             {
