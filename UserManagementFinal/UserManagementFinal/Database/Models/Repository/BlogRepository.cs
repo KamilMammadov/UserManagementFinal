@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementFinal.Database.Enums;
 using UserManagementFinal.Database.Models.Repository.Common;
 
 namespace UserManagementFinal.Database.Models.Repository
@@ -26,7 +27,7 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static Blog Add(User from ,string tittle,string text)
         {
-            Blog blog = new Blog(from, tittle, text);
+            Blog blog = new Blog(from, tittle, text,BlogStatus.Waiting);
             DBContens.Add(blog);
             return blog;
         }
