@@ -29,7 +29,7 @@ namespace UserManagementFinal.Database.Models.Repository
         {
             DBontens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321", 1));
             DBontens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
-            DBontens.Add(new Blog("C#", "Salam",));
+       
 
 
         }

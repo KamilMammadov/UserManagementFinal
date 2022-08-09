@@ -24,12 +24,12 @@ namespace UserManagementFinal.ApplicationLogic
             Console.WriteLine($"Welcome admin : {user.GetUserInfo()}");
             while (true)
             {
+                Console.WriteLine();
 
-
-                Console.WriteLine("Admin commands are : /add-user , /update-user ," +
-                    " /remove-user , /reports, /add-admin," +
-                    "/show-admins,/update-admin, /make-admin , /remove-admin, /show-users, /logout");
-
+                Console.WriteLine("Admin commands are : /add-user ,\n /update-user ," +
+                    " /remove-user , /reports,\n /add-admin," +
+                    "/show-admins,/update-admin, /make-admin ,\n /remove-admin, /show-users,\n /logout");
+                Console.WriteLine();
                 Console.Write("Enter suitable command : ");
                 string command = Console.ReadLine();
 

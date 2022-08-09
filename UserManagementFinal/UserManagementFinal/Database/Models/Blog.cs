@@ -14,13 +14,13 @@ namespace UserManagementFinal.Database.Models
         public string Content { get; set; }
         public string ID { get; set; }
         public DateTime CreadetTime { get; set; }
-        public List<Comments> Comments { get; set; }
+       
 
-        public Blog(string tittle,string content,List<Comments> comments,string id=null)
+        public Blog(string tittle,string content,string id=null)
         {
             Tittle = tittle;
             Content = content;
-            Comments = comments;
+            
             CreadetTime = DateTime.Now;
             if (id!=null)
             {
