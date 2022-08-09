@@ -266,11 +266,15 @@ namespace UserManagementFinal.ApplicationLogic
             Console.WriteLine($"User succesfully joined : {user.GetUserInfo()}");
             while (true)
             {
-                Console.WriteLine("User commands are : /inbox,\n /add-blog,\n/blogs,\n/delete-blog,\n/logout");
+                Console.WriteLine("User commands are : /inbox,\n /add-blog,\n/blogs,\n/delete-blog,\n/add-comment,\n/logout");
                 string command = Console.ReadLine();
                 if (command=="/inbox")
                 {
                     BlogService.Inbox();
+                }
+                else if (command == "/add-comment")
+                {
+                    BlogService.AddComment();
                 }
                 else if (command== "/add-blog")
                 {

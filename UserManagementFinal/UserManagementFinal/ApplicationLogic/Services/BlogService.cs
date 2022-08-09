@@ -212,6 +212,19 @@ namespace UserManagementFinal.ApplicationLogic.Services
                 Console.WriteLine("You can remove only your blogs");
             }
         }
+        
+        public static void AddComment()
+        {
+            Console.WriteLine("Please enter blog's code which you want to comment");
+            string code = Console.ReadLine();
+            Blog blog = BlogRepository.GetByCode(code);
+            if (blog!=null)
+            {
+            Console.WriteLine("enter your comment");
+                string comment = Console.ReadLine();
+                CommentRepository.Add(blog, Dashboard.CurrentUser, comment);
+            }
+        }
 
     }
 
