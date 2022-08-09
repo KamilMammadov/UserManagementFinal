@@ -159,6 +159,14 @@ namespace UserManagementFinal.ApplicationLogic.Services
                     }
                     Console.WriteLine();
 
+                    List<Comments> comments = CommentRepository.GetCommentsByBlog(blog);
+                    if (comments!=null)
+                    {
+                        foreach (Comments comment in comments)
+                        {
+                            Console.WriteLine($"{comment.From.Name} {comment.From.LastName} commented to your {blog.ID} blog ");
+                        }
+                    }
                 }
             }
         }

@@ -31,5 +31,18 @@ namespace UserManagementFinal.Database.Models.Repository
             return comments;           
         }
 
+        public static List<Comments> GetCommentsByBlog(Blog blog)
+        {
+            List<Comments> comments = new List<Comments>();
+            foreach (Comments comment in DBContens)
+            {
+                if (comment.Blog==blog)
+                {
+                    comments.Add(comment);
+                }
+            }
+            return comments;
+        }
+
     }
 }
