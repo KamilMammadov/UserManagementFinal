@@ -274,7 +274,7 @@ namespace UserManagementFinal.ApplicationLogic
                 }
                 else if (command == "/delete-blog")
                 {
-                    BlogService.
+                    BlogService.DeleteBlog();
                 }
                 else if (command == "/blogs")
                 {

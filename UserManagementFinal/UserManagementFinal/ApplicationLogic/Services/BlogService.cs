@@ -199,11 +199,13 @@ namespace UserManagementFinal.ApplicationLogic.Services
         {
             Console.WriteLine("enter blog code :");
             string code = Console.ReadLine();
+
             Blog blog = BlogRepository.GetByCode(code);
 
             if (Dashboard.CurrentUser==blog.From)
             {
-
+                blogrepo.Delete(blog);
+                Console.WriteLine("your blog deleted succesfully.");
             }
             else
             {

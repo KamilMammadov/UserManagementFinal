@@ -48,6 +48,7 @@ namespace UserManagementFinal.Database.Models.Repository
             DBContens.Add(blog);
             return blog;
         }
+       
 
         public static Blog GetByCode(string code)
         {
