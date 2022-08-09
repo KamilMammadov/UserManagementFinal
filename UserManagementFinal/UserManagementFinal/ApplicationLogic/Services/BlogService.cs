@@ -12,17 +12,28 @@ namespace UserManagementFinal.ApplicationLogic.Services
     partial class BlogService
     {
         private static BlogRepository blogrepo = new BlogRepository();
+        private static CommentRepository commentrepo = new CommentRepository();
        
         public static void ShowBlogs()
         {
             List<Blog> blogs = blogrepo.GetAll();
-
+            List<Comments> comments = commentrepo.GetAll();
             foreach (Blog blog in blogs)
             {
-                Console.WriteLine($"[{blog.CreadetTime.ToString("dd,MM,yyyy")}]  [{blog.From.Name}]  [{blog.From.LastName}] ");
+                Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}]  [{blog.From.Name}]  [{blog.From.LastName}] ");
                 Console.WriteLine($"==={blog.Tittle}===" );
                 Console.WriteLine(blog.Content);
                 Console.WriteLine();
+
+                foreach (Comments comment in comments)
+                {
+                    if (comment.Blog==blog)
+                    {
+                        Console.WriteLine($"{comment.GetInfo()}");
+
+                    }
+                }
+
             }
         }
 

@@ -20,6 +20,7 @@ namespace UserManagementFinal
             while (true)
             {
                 UserRepository userRepository = new UserRepository();
+                CommentRepository commentRepository = new CommentRepository();
                 Console.Write("Enter command :");
                 string command = Console.ReadLine();
                 if (command == "/register")
