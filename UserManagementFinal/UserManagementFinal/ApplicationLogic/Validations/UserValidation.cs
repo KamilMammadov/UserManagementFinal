@@ -142,7 +142,7 @@ namespace UserManagementFinal.ApplicationLogic.Validations
         {
             Console.Write("Insert email : ");
             string email = Console.ReadLine();
-            while (!UserValidation.IsValidEmail(email) || !UserValidation.IsUserExistsByEmail(email))
+            while (!UserValidation.IsValidEmail(email) && !UserValidation.IsUserExistsByEmail(email))
             {
                 Console.Write("Pls enter email again : ");
                 email = Console.ReadLine();

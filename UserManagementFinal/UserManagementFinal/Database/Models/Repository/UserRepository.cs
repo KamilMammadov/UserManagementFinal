@@ -31,13 +31,14 @@ namespace UserManagementFinal.Database.Models.Repository
             DBContens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
             DBContens.Add(new User("eshqin", "ferecov", "eshqin@gmail.com", "123321", 3));
             DBContens.Add(new Admin("Revan", "Maxmudov", "revan@gmail.com", "123321", 4));
+            DBContens.Add(new User("kamil", "ferecov", "kamilmammadov@code.edu.az", "123321", 5));
 
 
         }
 
 
         //normal user elave etmek.
-        public static User Add(string name, string lastName, string email, string password)
+        public static User AddUser(string name, string lastName, string email, string password)
         {
 
             User user = new User(name, lastName, email, password, IdCounter);
@@ -46,13 +47,13 @@ namespace UserManagementFinal.Database.Models.Repository
         }
 
         //admin silinenden sonra user kimi liste elave edilmekdir.
-        public static User Add(string name, string lastName, string email, string password, int id)
-        {
+        //public static User Add(string name, string lastName, string email, string password, int id)
+        //{
 
-            User user = new User(name, lastName, email, password, id);
-            DBContens.Add(user);
-            return user;
-        }
+        //    User user = new User(name, lastName, email, password, id);
+        //    DBContens.Add(user);
+        //    return user;
+        //}
 
 
 

@@ -65,7 +65,7 @@ namespace UserManagementFinal.Database.Models
 
         public virtual string GetUserInfo()
         {
-            return $"Istifadeci adi : {Name} , soyadi : {LastName} , emaili : {Email} ";
+            return $" ID : {Id} Istifadeci adi : {Name} , soyadi : {LastName} , emaili : {Email} ";
 
         }
     }

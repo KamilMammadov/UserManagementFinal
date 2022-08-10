@@ -167,6 +167,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
                         {
                             Console.WriteLine($"{comment.From.Name} {comment.From.LastName} commented to your {blog.ID} blog ");
                         }
+                        Console.WriteLine();
                     }
                 }
             }
@@ -286,15 +287,18 @@ namespace UserManagementFinal.ApplicationLogic.Services
                 if (command == "/approve-blog")
                 {
                     auditingBlog.Status = BlogStatus.Accepted;
+                    Console.WriteLine("Blog Approved");
                 }
                 else if(command == "/reject-blog")
                 {
                     auditingBlog.Status = BlogStatus.Rejected;
+                    Console.WriteLine("Blog Rejected");
                 }
                 else
                 {
                     Console.WriteLine("command not found");
                 }
+                Console.WriteLine();
             }
             else
             {

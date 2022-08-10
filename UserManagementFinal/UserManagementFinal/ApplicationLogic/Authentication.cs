@@ -18,7 +18,7 @@ namespace UserManagementFinal.ApplicationLogic
             string email = UserValidation.GetEmail();
             string password = UserValidation.GetPassword();
 
-            User user = UserRepository.Add(name, lastName, email, password);
+            User user = UserRepository.AddUser(name, lastName, email, password);
             Console.WriteLine($"User added to sytstem {user.GetUserInfo()}");
 
         }
