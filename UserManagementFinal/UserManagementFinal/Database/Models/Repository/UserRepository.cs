@@ -94,14 +94,22 @@ namespace UserManagementFinal.Database.Models.Repository
         //}
         public static bool IsEmailExists(string email)
         {
-            foreach (User user in DBContens)
+            for (int i = 0; i < DBContens.Count; i++)
             {
-                if (user.Email == email)
+                if (DBContens[i].Email == email)
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
+            //foreach (User user in DBContens)
+            //{
+            //    if (user.Email == email)
+            //    {
+            //        return false;
+            //    }
+            //}
+            //return true ;
         }
 
         public static User GetByEmail(string email)

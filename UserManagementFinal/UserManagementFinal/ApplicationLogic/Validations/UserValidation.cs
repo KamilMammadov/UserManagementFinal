@@ -36,15 +36,23 @@ namespace UserManagementFinal.ApplicationLogic.Validations
             return false;
         }
 
+        //public static bool IsValidEmail(string email)
+        //{
+        //    string patterns = @"^([a-zA-Z0-9]{10,30})(@code\.edu\.az)$";
+        //    Regex regexemail = new Regex(patterns);
+        //    if (regexemail.IsMatch(email))
+        //    {
+        //        return true;
+        //    }
+        //    Console.WriteLine("Email must be like that exampleemail@code.edu.az");
+        //    return false;
+        //}
         public static bool IsValidEmail(string email)
         {
-            string patterns = @"^([a-zA-Z0-9]{10,30})(@code\.edu\.az)$";
-            Regex regexemail = new Regex(patterns);
-            if (regexemail.IsMatch(email))
+            if (Regex.IsMatch(email, @"^[a-zA-Z0-9]{10,30}@code\.edu\.az") && UserRepository.IsEmailExists(email))
             {
                 return true;
             }
-            Console.WriteLine("Email must be like that exampleemail@code.edu.az");
             return false;
         }
 
@@ -140,14 +148,31 @@ namespace UserManagementFinal.ApplicationLogic.Validations
         }
         public static string GetEmail()
         {
-            Console.Write("Insert email : ");
-            string email = Console.ReadLine();
-            while (!UserValidation.IsValidEmail(email) && !UserValidation.IsUserExistsByEmail(email))
+            string email = null;
+            bool isExceptionValid;
+            do
             {
-                Console.Write("Pls enter email again : ");
-                email = Console.ReadLine();
-            }
+                try
+                {
+
+                    Console.Write("Insert email : ");
+                    email = Console.ReadLine();
+
+                    if (email == "null")
+                    {
+                        throw new Exception();
+                    }
+                    isExceptionValid = false;
+                }
+                catch (Exception)
+                {
+                    isExceptionValid = true;
+                    Console.WriteLine("Xeta var"); ;
+                }
+
+            } while (isExceptionValid ||!UserValidation.IsValidEmail(email));
             return email;
+           
         }
         public static string GetPassword()
         {
