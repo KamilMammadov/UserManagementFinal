@@ -22,12 +22,12 @@ namespace UserManagementFinal.Database.Models
 
         }
 
-        //Update etmek ucun
-        public Admin(string name, string lastName)
-            : base(name, lastName)
-        {
+        ////Update etmek ucun
+        //public Admin(string name, string lastName)
+        //    : base(name, lastName)
+        //{
 
-        }
+        //}
 
         public override string GetUserInfo()
         {

@@ -27,7 +27,7 @@ namespace UserManagementFinal.Database.Models
 
         public string GetInfo()
         {
-            return RowNumber + " " +CreatedTime.ToString("mm.dd.yyyy") + " " + From.Name + " " + From.LastName + " " + Content;
+            return CreatedTime.ToString("mm.dd.yyyy") + " " + From.Name + " " + From.LastName + " " + Content;
         }
     }
 }

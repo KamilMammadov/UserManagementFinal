@@ -139,7 +139,6 @@ namespace UserManagementFinal.ApplicationLogic.Services
                 }
             }
         }
-
     }
 
     partial class BlogService  //user`s methods
@@ -151,7 +150,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
             {
                 foreach (Inbox inbox in inboxes)
                 {
-                    if (inbox.To.Id == Dashboard.CurrentUser.Id)
+                    if (inbox.To == Dashboard.CurrentUser)
                     {
                         Console.WriteLine(inbox.Message);
 

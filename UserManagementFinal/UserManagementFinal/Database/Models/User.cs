@@ -49,19 +49,19 @@ namespace UserManagementFinal.Database.Models
 
         }
         // bu normal elave etmek ucun.
-        public User(string name, string lastName, string email, string password)
-        {
-            Name = name;
-            LastName = lastName;
-            Email = email;
-            Password = password;
-        }
+        //public User(string name, string lastName, string email, string password)
+        //{
+        //    Name = name;
+        //    LastName = lastName;
+        //    Email = email;
+        //    Password = password;
+        //}
 
-        public User(string name, string lastName)
-        {
-            Name = name;
-            LastName = lastName;
-        }
+        //public User(string name, string lastName)
+        //{
+        //    Name = name;
+        //    LastName = lastName;
+        //}
 
         public virtual string GetUserInfo()
         {

@@ -27,11 +27,11 @@ namespace UserManagementFinal.Database.Models.Repository
 
         public static void SeedUsers()
         {
-            DBContens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321", 1));
-            DBContens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321", 2));
-            DBContens.Add(new User("eshqin", "ferecov", "eshqin@gmail.com", "123321", 3));
-            DBContens.Add(new Admin("Revan", "Maxmudov", "revan@gmail.com", "123321", 4));
-            DBContens.Add(new User("kamil", "ferecov", "kamilmammadov@code.edu.az", "123321", 5));
+            DBContens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321"));
+            DBContens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321"));
+            DBContens.Add(new User("eshqin", "ferecov", "eshqin@gmail.com", "123321"));
+            DBContens.Add(new Admin("Revan", "Maxmudov", "revan@gmail.com", "123321"));
+            DBContens.Add(new User("kamil", "ferecov", "kamilmammadov@code.edu.az", "123321"));
 
 
         }
@@ -41,7 +41,7 @@ namespace UserManagementFinal.Database.Models.Repository
         public static User AddUser(string name, string lastName, string email, string password)
         {
 
-            User user = new User(name, lastName, email, password, IdCounter);
+            User user = new User(name, lastName, email, password,IdCounter);
             DBContens.Add(user);
             return user;
         }
