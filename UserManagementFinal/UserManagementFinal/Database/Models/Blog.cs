@@ -27,14 +27,9 @@ namespace UserManagementFinal.Database.Models
             Status = status;
 
             CreadetTime = DateTime.Now;
-            if (id != null)
-            {
-                ID = id;
-            }
-            else
-            {
+            
                 ID = BlogRepository.RandomCode;
-            }
+            
 
         }
         public string GetInfo()
