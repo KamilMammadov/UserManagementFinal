@@ -15,6 +15,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
     {
         private static BlogRepository blogrepo = new BlogRepository();
         private static CommentRepository commentrepo = new CommentRepository();
+        private static InboxRepository inboxRepository = new InboxRepository();
 
         public static void ShowBlogs()
         {
@@ -142,12 +143,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
     {
         public static void Inbox()
         {
-            List<Blog> blogs = blogrepo.GetAll();
-            foreach (Blog blog in blogs)
-            {
-                
-                
-            }
+          
         }
 
         public static void MyBlogs()
@@ -237,6 +233,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
         {
             List<Blog> blogs = blogrepo.GetAll();
             List<Comments> comments = commentrepo.GetAll();
+          
             foreach (Blog blog in blogs)
             {
                 if (blog.Status == BlogStatus.Waiting)
@@ -259,16 +256,27 @@ namespace UserManagementFinal.ApplicationLogic.Services
             Console.WriteLine("Enter blog's code :");
             string code = Console.ReadLine();
             Blog auditingBlog = BlogRepository.GetByCode(code);
+            string message = null;
+           
             if (auditingBlog!=null)
             {
                 if (command == "/approve-blog")
                 {
                     auditingBlog.Status = BlogStatus.Accepted;
+                    message = "Blog Approved";
+
+                    Inbox inbox = new Inbox(auditingBlog.From ,auditingBlog,message);
+                    inboxRepository.Add(inbox);
+
                     Console.WriteLine("Blog Approved");
                 }
                 else if(command == "/reject-blog")
                 {
                     auditingBlog.Status = BlogStatus.Rejected;
+                    message = "Blog Rejected";
+
+                    Inbox inbox = new Inbox(auditingBlog.From, auditingBlog, message);
+                    inboxRepository.Add(inbox);
                     Console.WriteLine("Blog Rejected");
                 }
                 else

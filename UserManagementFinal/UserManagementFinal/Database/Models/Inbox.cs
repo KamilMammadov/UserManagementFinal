@@ -21,7 +21,7 @@ namespace UserManagementFinal.Database.Models
 
         public string GetMessage()
         {
-            return Blog.ID + " " + Message;
+            return To + " " + Blog.ID + " " + Message;
         }
     }
 }
