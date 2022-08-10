@@ -10,18 +10,15 @@ namespace UserManagementFinal.Database.Models
     class Inbox : Entity<int>
     {
         public User To { get; set; }
-        public Blog Blog { get; set; }
+        
         public string Message { get; set; }
-        public Inbox(User to, Blog blog, string message)
+        public Inbox(User to, string message)
         {
             To = to;
-            Blog = blog;
+          
             Message = message;
         }
 
-        public string GetMessage()
-        {
-            return To + " " + Blog.ID + " " + Message;
-        }
+        
     }
 }

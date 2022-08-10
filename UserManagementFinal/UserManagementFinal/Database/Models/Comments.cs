@@ -10,8 +10,7 @@ namespace UserManagementFinal.Database.Models
     class Comments : Entity<int>
     {
         public Blog Blog { get; set; }
-        private static int _rowNumber=1;
-        public int RowNumber { get; set; }
+       
         public User From { get; set; }
         public string Content { get; set; }
         public DateTime CreatedTime { get; set; }
@@ -19,11 +18,11 @@ namespace UserManagementFinal.Database.Models
         public Comments(Blog blog,User from,string content)
         {
             Blog = blog;
-            RowNumber = _rowNumber;
+        
             From = from;
             Content = content;
             CreatedTime = DateTime.Now;
-            _rowNumber++;
+        
         }
 
         public string GetInfo()

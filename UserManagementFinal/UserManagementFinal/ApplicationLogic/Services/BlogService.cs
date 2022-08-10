@@ -15,7 +15,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
     {
         private static BlogRepository blogrepo = new BlogRepository();
         private static CommentRepository commentrepo = new CommentRepository();
-        private static InboxRepository inboxRepository = new InboxRepository();
+        private static InboxRepository inboxRepo = new InboxRepository();
 
         public static void ShowBlogs()
         {
@@ -30,14 +30,17 @@ namespace UserManagementFinal.ApplicationLogic.Services
                     Console.WriteLine(blog.Content);
                     Console.WriteLine();
 
-                    Console.WriteLine("Comments: " + comments.Count);
+                   
+                    int rowNumber = Convert.ToInt32(Console.ReadLine());
                     foreach (Comments comment in comments)
                     {
                         if (comment.Blog == blog)
                         {
-                            Console.WriteLine($"{comment.GetInfo()}");
+                            Console.WriteLine($"{rowNumber}. {comment.GetInfo()}");
+                            rowNumber++;
                         }
                     }
+                    Console.WriteLine();
                 }
 
 
@@ -143,7 +146,23 @@ namespace UserManagementFinal.ApplicationLogic.Services
     {
         public static void Inbox()
         {
-          
+            List<Inbox> inboxes = inboxRepo.GetAll();
+            if (inboxes!=null)
+            {
+                foreach (Inbox inbox in inboxes)
+                {
+                    if (inbox.To.Id == Dashboard.CurrentUser.Id)
+                    {
+                        Console.WriteLine(inbox.Message);
+
+                    }
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("----------Empty--------");
+            }
         }
 
         public static void MyBlogs()
@@ -213,8 +232,17 @@ namespace UserManagementFinal.ApplicationLogic.Services
                     Console.WriteLine("Comment's length must be min 10,max 35");
                     comment = Console.ReadLine();
                 }
+                
+                //Inbox inbox = new Inbox(Dashboard.CurrentUser, blog, comment);
+                //List<Inbox> inboxes = inboxRepo.GetAll();
+                //inboxes.Add(inbox);
+
+                Inbox inbox = new Inbox(blog.From, $"{blog.ID} blog Commented by {blog.From.Name} {blog.From.LastName}");
+                inboxRepo.Add(inbox);
 
                 CommentRepository.Add(blog, Dashboard.CurrentUser, comment);
+
+                Console.WriteLine("Comment succesfully added");
                 Console.WriteLine();
             }
             else
@@ -263,21 +291,23 @@ namespace UserManagementFinal.ApplicationLogic.Services
                 if (command == "/approve-blog")
                 {
                     auditingBlog.Status = BlogStatus.Accepted;
-                    message = "Blog Approved";
+                    message = $"{auditingBlog.ID}Blog Approved";
 
-                    Inbox inbox = new Inbox(auditingBlog.From ,auditingBlog,message);
-                    inboxRepository.Add(inbox);
+                    Inbox inbox = new Inbox(auditingBlog.From ,message);
+                    inboxRepo.Add(inbox);
 
-                    Console.WriteLine("Blog Approved");
+                    Console.WriteLine(message);
+                    Console.WriteLine();
                 }
                 else if(command == "/reject-blog")
                 {
                     auditingBlog.Status = BlogStatus.Rejected;
-                    message = "Blog Rejected";
+                    message = $"{auditingBlog.ID} Blog Rejected";
 
-                    Inbox inbox = new Inbox(auditingBlog.From, auditingBlog, message);
-                    inboxRepository.Add(inbox);
-                    Console.WriteLine("Blog Rejected");
+                    Inbox inbox = new Inbox(auditingBlog.From,  message);
+                    inboxRepo.Add(inbox);
+                    Console.WriteLine(message);
+                    Console.WriteLine();
                 }
                 else
                 {

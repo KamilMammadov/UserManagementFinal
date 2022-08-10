@@ -75,8 +75,9 @@ namespace UserManagementFinal.ApplicationLogic
                         {
                             Console.WriteLine("Istifadeci tapilmadi");
                         }
-                        else if (users is User)
+                        else if (users is not Admin)
                         {
+
                             Console.WriteLine(users.GetUserInfo());
                         }
 
