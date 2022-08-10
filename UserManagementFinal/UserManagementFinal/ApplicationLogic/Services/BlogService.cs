@@ -145,31 +145,8 @@ namespace UserManagementFinal.ApplicationLogic.Services
             List<Blog> blogs = blogrepo.GetAll();
             foreach (Blog blog in blogs)
             {
-                if (blog.From.Id==Dashboard.CurrentUser.Id)
-                {
-                    switch (blog.Status)
-                    {
-                        case BlogStatus.Accepted:
-                            Console.WriteLine($"Your {blog.ID} blog Accepted");
-                            break;
-                        case BlogStatus.Rejected:
-                            Console.WriteLine($"Your {blog.ID} blog Rejected");
-                            break;                      
-                        default:
-                            break;
-                    }
-                    Console.WriteLine();
-
-                    List<Comments> comments = CommentRepository.GetCommentsByBlog(blog);
-                    if (comments!=null)
-                    {
-                        foreach (Comments comment in comments)
-                        {
-                            Console.WriteLine($"{comment.From.Name} {comment.From.LastName} commented to your {blog.ID} blog ");
-                        }
-                        Console.WriteLine();
-                    }
-                }
+                
+                
             }
         }
 
