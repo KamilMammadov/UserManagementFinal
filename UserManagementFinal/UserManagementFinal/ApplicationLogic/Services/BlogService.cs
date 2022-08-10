@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementFinal.ApplicationLogic.Validations;
 using UserManagementFinal.Database.Enums;
 using UserManagementFinal.Database.Models;
 using UserManagementFinal.Database.Models.Repository;
@@ -189,8 +190,19 @@ namespace UserManagementFinal.ApplicationLogic.Services
         {
             Console.WriteLine("Enter Tittle of blog :");
             string tittle = Console.ReadLine();
+            while (!BaseValidation.IsLengthCorrect(tittle,10,35))
+            {
+                Console.WriteLine("Tittle's length must be min 10,max 35");
+                tittle = Console.ReadLine();
+            }
+
             Console.WriteLine("enter blog content");
             string content = Console.ReadLine();
+            while (!BaseValidation.IsLengthCorrect(content, 20, 45))
+            {
+                Console.WriteLine("Content's length must be min 20,max 45");
+                content = Console.ReadLine();
+            }
 
             BlogRepository.Add(Dashboard.CurrentUser, tittle, content);
         }
@@ -222,7 +234,19 @@ namespace UserManagementFinal.ApplicationLogic.Services
             {
             Console.WriteLine("enter your comment");
                 string comment = Console.ReadLine();
+                while (!BaseValidation.IsLengthCorrect(comment,10,35))
+                {
+                    Console.WriteLine("Comment's length must be min 10,max 35");
+                    comment = Console.ReadLine();
+                }
+
                 CommentRepository.Add(blog, Dashboard.CurrentUser, comment);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Blog not found");
+                Console.WriteLine();
             }
         }
 
