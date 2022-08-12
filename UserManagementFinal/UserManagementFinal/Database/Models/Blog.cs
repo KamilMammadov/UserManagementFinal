@@ -9,7 +9,7 @@ using UserManagementFinal.Database.Models.Repository;
 
 namespace UserManagementFinal.Database.Models
 {
-    class Blog : Entity<string>
+    public class Blog : Entity<string>
     {
         public User From { get; set; }
         public string Tittle { get; set; }
@@ -21,7 +21,7 @@ namespace UserManagementFinal.Database.Models
 
         public Blog(User from, string tittle, string content, BlogStatus status, string id = null)
         {
-            
+
             From = from;
             Tittle = tittle;
             Content = content;
@@ -40,7 +40,7 @@ namespace UserManagementFinal.Database.Models
         }
         public string GetInfo()
         {
-            return "Time : "+ CreadetTime.ToString("dd.MM.yyyy") + " ID : " + ID + " Tittle : " + Tittle + " Content: " + Content + "- Status : " + Status;
+            return "Time : " + CreadetTime.ToString("dd.MM.yyyy") + " ID : " + ID + " Tittle : " + Tittle + " Content: " + Content + "- Status : " + Status;
         }
 
     }

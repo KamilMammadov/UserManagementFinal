@@ -25,25 +25,11 @@ namespace UserManagementFinal.ApplicationLogic.Services
             {
                 if (blog.Status == BlogStatus.Accepted)
                 {
-                    Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.From.Name}]  [{blog.From.LastName}] ");
-                    Console.WriteLine($"==={blog.Tittle}===");
-                    Console.WriteLine(blog.Content);
-                    Console.WriteLine();
 
-                   
-                    int rowNumber = Convert.ToInt32(Console.ReadLine());
-                    foreach (Comments comment in comments)
-                    {
-                        if (comment.Blog == blog)
-                        {
-                            Console.WriteLine($"{rowNumber}. {comment.GetInfo()}");
-                            rowNumber++;
-                        }
-                    }
-                    Console.WriteLine();
+                    PrintBlogDetail(blog);
+
+
                 }
-
-
             }
         }
 
@@ -66,19 +52,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
                     {
                         if (blog.Status == BlogStatus.Accepted)
                         {
-                            Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.From.Name}]  [{blog.From.LastName}] ");
-                            Console.WriteLine($"==={blog.Tittle}===");
-                            Console.WriteLine(blog.Content);
-                            Console.WriteLine();
-
-                            Console.WriteLine("Comments: " + comments.Count);
-                            foreach (Comments comment in comments)
-                            {
-                                if (comment.Blog == blog)
-                                {
-                                    Console.WriteLine($"{comment.GetInfo()}");
-                                }
-                            }
+                            PrintBlogDetail(blog);
                         }
                     }
                 }
@@ -94,19 +68,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
                     {
                         if (blog.Status == BlogStatus.Accepted)
                         {
-                            Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.From.Name}]  [{blog.From.LastName}] ");
-                            Console.WriteLine($"==={blog.Tittle}===");
-                            Console.WriteLine(blog.Content);
-                            Console.WriteLine();
-
-                            Console.WriteLine("Comments: " + comments.Count);
-                            foreach (Comments comment in comments)
-                            {
-                                if (comment.Blog == blog)
-                                {
-                                    Console.WriteLine($"{comment.GetInfo()}");
-                                }
-                            }
+                            PrintBlogDetail(blog);
                         }
                     }
                 }
@@ -124,21 +86,47 @@ namespace UserManagementFinal.ApplicationLogic.Services
             Blog blog = BlogRepository.GetByCode(code);
             if (blog!=null)
             {
-                Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.From.Name}]  [{blog.From.LastName}] ");
-                Console.WriteLine($"==={blog.Tittle}===");
-                Console.WriteLine(blog.Content);
-                Console.WriteLine();
-
-                Console.WriteLine("Comments: " + comments.Count);
-                foreach (Comments comment in comments)
-                {
-                    if (comment.Blog == blog)
-                    {
-                        Console.WriteLine($"{comment.GetInfo()}");
-                    }
-                }
+                PrintBlogDetail(blog);
             }
         }
+
+        private static void PrintBlogDetail(Blog blog)
+        {
+            Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.From.Name}]  [{blog.From.LastName}] ");
+            Console.WriteLine($"==={blog.Tittle}===");
+            Console.WriteLine(blog.Content);
+            Console.WriteLine();
+
+                 
+
+            int rowNumber = 1;
+            foreach (Comments comment in GetCommentsByBlog(blog.ID))
+            {
+                if (comment.Blog.ID == blog.ID)
+                {
+                    Console.WriteLine($"{rowNumber}. {comment.GetInfo()}");
+                    rowNumber++;
+                }
+            }
+            Console.WriteLine();
+
+        }
+
+        private static List<Comments> GetCommentsByBlog(string BlogID)
+        {
+
+            List<Comments> comments = new List<Comments>();
+            foreach (Comments comment in commentrepo.GetAll())
+            {
+                if (comment.Blog.ID == BlogID)
+                {
+                    comments.Add(comment);
+                }
+            }
+            return comments;
+        }
+
+
     }
 
     partial class BlogService  //user`s methods
@@ -206,7 +194,7 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
             Blog blog = BlogRepository.GetByCode(code);
 
-            if (Dashboard.CurrentUser==blog.From)
+            if (Dashboard.CurrentUser.Id==blog.From.Id)
             {
                 blogrepo.Delete(blog);
                 Console.WriteLine("your blog deleted succesfully.");

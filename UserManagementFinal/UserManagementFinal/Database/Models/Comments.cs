@@ -7,7 +7,7 @@ using UserManagementFinal.Database.Models.Common;
 
 namespace UserManagementFinal.Database.Models
 {
-    class Comments : Entity<int>
+    public class Comments : Entity<int>
     {
         public Blog Blog { get; set; }
        
