@@ -19,42 +19,30 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
         public static void ShowBlogs()
         {
-            List<Blog> blogs = blogrepo.GetAll();
-            List<Comments> comments = commentrepo.GetAll();
+            List<Blog> blogs = blogrepo.GetAll(x => x.Status==BlogStatus.Accepted);         
             foreach (Blog blog in blogs)
-            {
-                if (blog.Status == BlogStatus.Accepted)
-                {
-
-                    PrintBlogDetail(blog);
-
-
-                }
+            {               
+                    PrintBlogDetail(blog);               
             }
         }
 
         public static void FilteredBlogs()
         {
-            List<Blog> blogs = blogrepo.GetAll();
-            List<Comments> comments = commentrepo.GetAll();
             Console.WriteLine("/tittle");
             Console.WriteLine("/firstname");
             Console.WriteLine("enter command");
             string command = Console.ReadLine();
+
+           
+
             if (command == "/tittle")
             {
                 Console.WriteLine("enter tittle :");
                 string tittle = Console.ReadLine();
 
-                foreach (Blog blog in blogs)
+                foreach (Blog blog in blogrepo.GetAll(x => x.Tittle.Contains(tittle)&& x.Status == BlogStatus.Accepted))
                 {
-                    if (blog.Tittle.Contains(tittle))
-                    {
-                        if (blog.Status == BlogStatus.Accepted)
-                        {
-                            PrintBlogDetail(blog);
-                        }
-                    }
+                            PrintBlogDetail(blog);  
                 }
 
             }
@@ -62,24 +50,16 @@ namespace UserManagementFinal.ApplicationLogic.Services
             {
                 Console.WriteLine("enter firstname");
                 string firstname = Console.ReadLine();
-                foreach (Blog blog in blogs)
+                foreach (Blog blog in blogrepo.GetAll(x=> x.From.Name == firstname && x.Status == BlogStatus.Accepted))
                 {
-                    if (blog.From.Name==firstname)
-                    {
-                        if (blog.Status == BlogStatus.Accepted)
-                        {
                             PrintBlogDetail(blog);
-                        }
-                    }
                 }
             }
 
         }
 
         public static void FindBlogByCode()
-        {
-            
-            List<Comments> comments = commentrepo.GetAll();
+        {    
             Console.WriteLine("Please enter code");
             string code = Console.ReadLine();
 
@@ -100,33 +80,14 @@ namespace UserManagementFinal.ApplicationLogic.Services
                  
 
             int rowNumber = 1;
-            foreach (Comments comment in GetCommentsByBlog(blog.ID))
-            {
-                if (comment.Blog.ID == blog.ID)
-                {
+            foreach (Comments comment in commentrepo.GetAll(x=>x.Blog.ID==blog.ID ))
+            {             
                     Console.WriteLine($"{rowNumber}. {comment.GetInfo()}");
-                    rowNumber++;
-                }
+                    rowNumber++;              
             }
             Console.WriteLine();
 
         }
-
-        private static List<Comments> GetCommentsByBlog(string BlogID)
-        {
-
-            List<Comments> comments = new List<Comments>();
-            foreach (Comments comment in commentrepo.GetAll())
-            {
-                if (comment.Blog.ID == BlogID)
-                {
-                    comments.Add(comment);
-                }
-            }
-            return comments;
-        }
-
-
     }
 
     partial class BlogService  //user`s methods
@@ -154,15 +115,12 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
         public static void MyBlogs()
         {
-            List<Blog> blogs = blogrepo.GetAll();
+         
             int rownumber = 1;
-            foreach (Blog blog in blogs)
-            {             
-                if (Dashboard.CurrentUser.Id==blog.From.Id)
-                {
+            foreach (Blog blog in blogrepo.GetAll(x=>x.From.Id==Dashboard.CurrentUser.Id))
+            {         
                     Console.WriteLine($"{rownumber} {blog.GetInfo()}");
-                    rownumber++;
-                }
+                    rownumber++;             
             }
         }
 
@@ -246,21 +204,10 @@ namespace UserManagementFinal.ApplicationLogic.Services
     {
         public static void BlogManagement()
         {
-            List<Blog> blogs = blogrepo.GetAll();
-            List<Comments> comments = commentrepo.GetAll();
           
-            foreach (Blog blog in blogs)
+            foreach (Blog blog in blogrepo.GetAll(x=> x.Status==BlogStatus.Waiting))
             {
-                if (blog.Status == BlogStatus.Waiting)
-                {
-                    Console.WriteLine($"[{blog.CreadetTime.ToString("dd.MM.yyyy")}] [{blog.ID}] [{blog.Status}] [{blog.From.Name}]" +
-                        $"  [{blog.From.LastName}] ");
-                    Console.WriteLine($"==={blog.Tittle}===");
-                    Console.WriteLine(blog.Content);
-                    Console.WriteLine();                   
-                }
-
-
+                PrintBlogDetail(blog);
             }
 
             Console.WriteLine("Commands :");
