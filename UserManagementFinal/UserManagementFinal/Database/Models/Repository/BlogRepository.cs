@@ -20,6 +20,12 @@ namespace UserManagementFinal.Database.Models.Repository
             get
             {
                 _code = "BL" + randomID.Next(0,99999);
+                
+                while (GetByCode(_code)!=null)
+                {
+                    _code = "BL" + randomID.Next(0, 99999);
+                    return _code;
+                }
                 return _code;
             }
 

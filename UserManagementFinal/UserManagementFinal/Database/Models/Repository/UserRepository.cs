@@ -28,7 +28,7 @@ namespace UserManagementFinal.Database.Models.Repository
         public static void SeedUsers()
         {
             DBContens.Add(new User("kamil", "mammadov", "kamil@gmail.com", "123321"));
-            DBContens.Add(new Admin("Mahmood", "Garibov", "Garibov@gmail.com", "123321"));
+            DBContens.Add(new Admin("Mahmood", "Garibov", "garibov@gmail.com", "123321"));
             DBContens.Add(new User("eshqin", "ferecov", "eshqin@gmail.com", "123321"));
             DBContens.Add(new Admin("Revan", "Maxmudov", "revan@gmail.com", "123321"));
             DBContens.Add(new User("kamil", "ferecov", "kamilmammadov@code.edu.az", "123321"));
