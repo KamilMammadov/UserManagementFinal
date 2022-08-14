@@ -154,6 +154,11 @@ namespace UserManagementFinal.ApplicationLogic.Services
 
             if (Dashboard.CurrentUser.Id==blog.From.Id)
             {
+                List<Comments> comments = commentrepo.GetAll(x => x.Blog.ID == blog.ID);
+                foreach (Comments comment in comments)
+                {
+                    commentrepo.Delete(comment);
+                }
                 blogrepo.Delete(blog);
                 Console.WriteLine("your blog deleted succesfully.");
             }
